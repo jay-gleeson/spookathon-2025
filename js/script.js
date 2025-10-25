@@ -104,3 +104,53 @@ if (timerDisplay && startBtn && pauseBtn && resetBtn && focusTab && breakTab) {
 	focusTab.addEventListener('click', () => switchMode('focus'));
 	breakTab.addEventListener('click', () => switchMode('break'));
 }
+
+const sessionLengthSelect = document.getElementById('session-length');
+const examDistanceSelect = document.getElementById('exam-distance');
+
+function sendDurationsToAPI() {
+    const sessionLength = sessionLengthSelect.value;
+    const examDistance = examDistanceSelect.value;
+    fetch('http://localhost:5000/api/durations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            session_length: sessionLength,
+            exam_distance: examDistance
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (typeof data.focus_duration === 'number' && typeof data.break_duration === 'number' && typeof data.long_break_duration === 'number') {
+            window.FOCUS_DURATION = data.focus_duration * 60 ? data.focus_duration < 100 : data.focus_duration; // handle if API returns minutes or seconds
+            window.BREAK_DURATION = data.break_duration * 60 ? data.break_duration < 100 : data.break_duration;
+            window.LONG_BREAK_DURATION = data.long_break_duration * 60 ? data.long_break_duration < 100 : data.long_break_duration;
+
+            if (currentMode === 'focus') {
+                pomodoroDuration = window.FOCUS_DURATION;
+            } else if (inLongBreak && currentMode === 'break') {
+                pomodoroDuration = window.LONG_BREAK_DURATION;
+            } else {
+                pomodoroDuration = window.BREAK_DURATION;
+            }
+            timeLeft = pomodoroDuration;
+            updateDisplay();
+            pauseTimer();
+        }
+        console.log('API durations:', data);
+    })
+    .catch(error => {
+        console.error('Error fetching durations:', error);
+    });
+}
+
+if (sessionLengthSelect && examDistanceSelect) {
+}
+
+const pomodoroSetupForm = document.getElementById('pomodoro-setup-form');
+if (pomodoroSetupForm) {
+	pomodoroSetupForm.addEventListener('submit', function(e) {
+		e.preventDefault();
+		sendDurationsToAPI();
+	});
+}
