@@ -1,6 +1,12 @@
+
 const FOCUS_DURATION = 25 * 60; // 25 minutes
 const BREAK_DURATION = 5 * 60;  // 5 minutes
-const LONG_BREAK_DURATION = 30 * 30; // 30 minutes
+const LONG_BREAK_DURATION = 30 * 60; // 30 minutes
+
+let alarmAudio;
+window.addEventListener('DOMContentLoaded', () => {
+	alarmAudio = new Audio('assets/alarm.mp3');
+});
 
 let currentMode = 'focus';
 let pomodoroDuration = FOCUS_DURATION;
@@ -33,6 +39,10 @@ function startTimer() {
 		} else {
 			clearInterval(timerInterval);
 			isRunning = false;
+			if (alarmAudio) {
+				alarmAudio.currentTime = 0;
+				alarmAudio.play();
+			}
 			if (currentMode === 'focus') {
 				pomodoroCount++;
 				alert('Focus session complete! Time for a break.');
