@@ -1,10 +1,14 @@
 const FOCUS_DURATION = 25 * 60; // 25 minutes
 const BREAK_DURATION = 5 * 60;  // 5 minutes
+const LONG_BREAK_DURATION = 30 * 30; // 30 minutes
+
 let currentMode = 'focus';
 let pomodoroDuration = FOCUS_DURATION;
 let timeLeft = pomodoroDuration;
 let timerInterval = null;
 let isRunning = false;
+let pomodoroCount = 0;
+let inLongBreak = false;
 
 const timerDisplay = document.getElementById('timer-display');
 const startBtn = document.getElementById('start-btn');
@@ -30,10 +34,21 @@ function startTimer() {
 			clearInterval(timerInterval);
 			isRunning = false;
 			if (currentMode === 'focus') {
+				pomodoroCount++;
 				alert('Focus session complete! Time for a break.');
 				switchMode('break');
-			} else {
-				alert('Break session complete! Time to focus.');
+			} else if (currentMode === 'break' && !inLongBreak) {
+				if (pomodoroCount % 4 === 0) {
+					alert('Short break complete! Time for a long break.');
+					inLongBreak = true;
+					switchToLongBreak();
+				} else {
+					alert('Break session complete! Time to focus.');
+					switchMode('focus');
+				}
+			} else if (inLongBreak) {
+				alert('Long break complete! Time to focus.');
+				inLongBreak = false;
 				switchMode('focus');
 			}
 		}
@@ -53,15 +68,31 @@ function resetTimer() {
 }
 
 function switchMode(mode) {
-	if (currentMode === mode) return;
+	if (currentMode === mode && !inLongBreak) return;
 	currentMode = mode;
-	pomodoroDuration = (mode === 'focus') ? FOCUS_DURATION : BREAK_DURATION;
+	if (inLongBreak && mode === 'break') {
+		pomodoroDuration = LONG_BREAK_DURATION;
+	} else {
+		pomodoroDuration = (mode === 'focus') ? FOCUS_DURATION : BREAK_DURATION;
+	}
 	timeLeft = pomodoroDuration;
 	updateDisplay();
 	pauseTimer();
 	if (focusTab && breakTab) {
 		focusTab.classList.toggle('active', mode === 'focus');
 		breakTab.classList.toggle('active', mode === 'break');
+	}
+}
+
+function switchToLongBreak() {
+	currentMode = 'break';
+	pomodoroDuration = LONG_BREAK_DURATION;
+	timeLeft = pomodoroDuration;
+	updateDisplay();
+	pauseTimer();
+	if (focusTab && breakTab) {
+		focusTab.classList.remove('active');
+		breakTab.classList.add('active');
 	}
 }
 
