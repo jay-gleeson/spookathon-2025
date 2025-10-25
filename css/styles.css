@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -8,11 +9,12 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     padding: 20px;
+    background-color: #210F37;
 }
 
 header {
     margin-bottom: 2rem;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #5B532C;
     padding-bottom: 1rem;
 }
 
@@ -37,7 +39,7 @@ header {
 .site-title {
     font-size: 1.25rem;
     font-weight: bold;
-    color: #333;
+    color: white;
 }
 
 nav {
@@ -57,11 +59,11 @@ nav a {
 }
 
 nav a:hover {
-    color: #333;
+    color: #FDE7B3;
 }
 
 nav a.active {
-    color: #000;
+    color: #FFC50F;
     font-weight: bold;
 }
 
@@ -82,7 +84,7 @@ main {
 }
 
 section {
-    background-color: #f9f9f9;
+    background-color: #511D43;
     padding: 2rem;
     border-radius: 8px;
     margin-bottom: 2rem;
@@ -103,7 +105,7 @@ section {
 }
 
 .creator-card {
-    background: white;
+    background: #511D43;
     border-radius: 8px;
     padding: 1.5rem;
     text-align: center;
@@ -142,13 +144,14 @@ section {
 
 footer {
     background-color: #333;
-    color: white;
+    color: #FFC50F;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     padding: 0.5rem 0;
     z-index: 100;
+    font-size: 0.75rem;
 }
 
 .footer-content {
@@ -156,7 +159,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 32px;
+    padding: 0 30px;
     box-sizing: border-box;
 }
 
@@ -164,7 +167,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.75rem;
 }
 
 .footer-right img {
@@ -173,6 +176,62 @@ footer {
     filter: invert(100%);
     transition: filter 0.2s;
 }
+
 .footer-right img:hover {
     filter: invert(80%);
 }
+
+h1{
+    color: #EB5B00;
+    margin-bottom: 1rem;
+    font-size: 4rem;
+    text-align: center;
+    font-family: "Pirata One", system-ui;
+}
+
+button {
+    background-color: #4F1C51;
+    color: #D91656;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block; 
+    margin: 0 auto;
+    font-family: "Creepster", system-ui;
+    font-size: 2rem;
+}
+
+button:hover {
+    background-color: #6A2A6A;
+}
+
+.pomodoro-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; 
+    background-color: #2A004E;
+}
+
+.pomodoro-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pomodoro-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pomodoro-timer {
+    font-size: 4rem;
+    color: #EB5B00;
+    font-family: "Pirata One", system-ui;
+}
+
+
+
