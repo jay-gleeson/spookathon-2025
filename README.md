@@ -47,6 +47,7 @@ No more guessing your Pomodoro lengths — the spirits (and Gemini) have spoken!
 
 ## 🪦 Future Additions  
 - 🧛‍♀️ Study-streak tracking (because the undead never rest)  
+- 👻 Take over pomodoro durations when the API doesn't fit your vibe
 - 🕯️ Integration with calendar reminders before exams  
 - 🪩 Animations to reinforce good study behavior
 
