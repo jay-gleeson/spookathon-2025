@@ -1,11 +1,12 @@
 :root {
     scroll-behavior: smooth;
-    --primary-color: #4F1C51;
-    --secondary-color: #D91656;
-    --accent-color: #FFC50F;
-    --background-color: #210F37;
+    --background-color: rgba(0, 0, 0, 0.2);
+    --secondary-color: rgba(0, 0, 0, 0.4);
+    --accent-color: #888888;
     --text-color: white;
+    
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -13,19 +14,32 @@
 }
 
 body {
+    overflow-y: scroll;
     font-family: Arial, sans-serif;
     line-height: 1.6;
     padding: 20px;
-    background-color: var(--background-color);
+    background-image: url('../assets/background.png');
+    background-attachment: fixed;
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: center;
 }
 
 header {
     margin-bottom: 2rem;
-    border-bottom: 1px solid #5B532C;
+    background-color: var(--background-color);
+    backdrop-filter: blur(10px);
     padding-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
 .header-content {
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,23 +75,22 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: #666;
+    color: var(--text-color);
     transition: color 0.3s;
 }
 
 nav a:hover {
-    color: #FDE7B3;
+    color: var(--accent-color);
 }
 
 nav a.active {
-    color: #FFC50F;
     font-weight: bold;
 }
 
 h1 {
     letter-spacing: 2px;
     font-weight: 25;
-    color: #EB5B00;
+    color: var(--text-color);
     margin-bottom: 1rem;
     font-size: 4.5rem;
     text-align: center;
@@ -96,7 +109,8 @@ main {
 }
 
 section {
-    background-color: #511D43;
+    background-color: var(--background-color);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 8px;
     margin-bottom: 2rem;
@@ -104,12 +118,23 @@ section {
     align-items: center;
 }
 
+section.pomodoro-section {
+    margin-top: 8rem;
+}
+
+section.creators-grid {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
 .creators-grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 4rem;
     padding: 1rem;
+    margin: 0 auto;
     flex-wrap: nowrap;
     width: 100%;
     min-width: 0;
@@ -117,7 +142,9 @@ section {
 }
 
 .creator-card {
-    background: #511D43;
+    background-color: var(--background-color);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
@@ -130,12 +157,12 @@ section {
 
 .creator-card h3 {
     margin-bottom: 0.5rem;
-    color: #D95D39;
+    color: var(--text-color);
 }
 
 .creator-card p {
     margin-bottom: 1rem;
-    color: #F0A202;
+    color: var(--accent-color);
 }
 
 .creator-emoji {
@@ -151,7 +178,7 @@ section {
 .social-links a {
     display: inline-block;
     margin: 0 0.5rem;
-    color: #7B9E89;
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -160,8 +187,10 @@ section {
 }
 
 footer {
-    background-color: #222831;
-    color: #FFC50F;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-color);
+    backdrop-filter: blur(10px);
+    color: var(--text-color);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -191,16 +220,16 @@ footer {
     width: 24px;
     height: 24px;
     filter: invert(100%);
-    transition: filter 0.2s;
+    transition: filter 0.1s;
 }
 
 .footer-right img:hover {
-    filter: invert(80%);
+    filter: invert(60%);
 }
 
 button {
-    background-color: #4F1C51;
-    color: #D91656;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: none;
     padding: 0.75rem 2rem;
     border-radius: 4px;
@@ -213,7 +242,7 @@ button {
 }
 
 button:hover {
-    background-color: #6A2A6A;
+    background-color: var(--secondary-color);
 }
 
 .pomodoro-section {
@@ -221,7 +250,7 @@ button:hover {
     flex-direction: column;
     align-items: center;
     gap: 10px; 
-    background-color: #2A004E;
+    background-color: var(--background-color);
 }
 
 .pomodoro-tabs {
@@ -231,7 +260,7 @@ button:hover {
 }
 
 .pomodoro-tabs:active {
-    background-color: #6A2A6A;
+    background-color: var(--secondary-color);
     color: #FFF;
 }
 
@@ -243,7 +272,7 @@ button:hover {
 
 .pomodoro-timer {
     font-size: 4rem;
-    color: #EB5B00;
+    color: var(--text-color);
     font-family: "Pirata One", system-ui;
 }
 
@@ -251,7 +280,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #2A004E;
+    background-color: var(--background-color);
     padding: 10px;
 }
 
@@ -270,15 +299,15 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    color: #EB5B00;
+    color: var(--text-color);
     font-family: "New Rocker", cursive;
     font-size: 1rem;
 }
 
 select {
-    background-color: #4F1C51;
+    background-color: var(--background-color);
     border: none;
-    color: white;
+    color: #000000;
     font-size: 1rem;
     border-radius: 10px;
 }
@@ -287,8 +316,7 @@ select {
     position: fixed;
     bottom: 60px;
     left: 20px;
-    background-color: #2A004E;
-    border: 2px solid #EB5B00;
+    background-color: var(--background-color);
     border-radius: 12px;
     padding: 15px;
     display: flex;
@@ -300,8 +328,8 @@ select {
 }
 
 .audio-btn {
-    background-color: #4F1C51;
-    color: #D91656;
+    background-color: var(--background-color);
+    color: var(--accent-color);
     border: none;
     padding: 10px;
     border-radius: 8px;
@@ -317,7 +345,7 @@ select {
 }
 
 .audio-btn:hover {
-    background-color: #6A2A6A;
+    background-color: var(--secondary-color);
     transform: scale(1.05);
 }
 
@@ -334,7 +362,7 @@ select {
 .volume-slider {
     width: 80px;
     height: 6px;
-    background: #4F1C51;
+    background: var(--background-color);
     border-radius: 3px;
     outline: none;
     cursor: pointer;
@@ -344,21 +372,21 @@ select {
     appearance: none;
     width: 18px;
     height: 18px;
-    background: #EB5B00;
+    background: var(--text-color);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .volume-slider::-webkit-slider-thumb:hover {
-    background: #FFC50F;
+    background: var(--text-color);
     transform: scale(1.1);
 }
 
 .volume-slider::-moz-range-thumb {
     width: 18px;
     height: 18px;
-    background: #EB5B00;
+    background: var(--background-color);
     border-radius: 50%;
     cursor: pointer;
     border: none;
@@ -366,13 +394,13 @@ select {
 }
 
 .volume-slider::-moz-range-thumb:hover {
-    background: #FFC50F;
+    background: var(--text-color);
     transform: scale(1.1);
 }
 
 .pomodoro-tabs .tab{
-    background-color:#4F1C51;
-    color: #D91656;
+    background-color: var(--background-color);
+    color: var(--accent-color);
     border: none;
     padding: 0.75rem 2rem;
     border-radius: 6px;
@@ -383,13 +411,13 @@ select {
 }
 
 .pomodoro-tabs .tab:hover{
-    background-color: #6A2A6A;
+    background-color: var(--secondary-color);
     color: #FFF;
 }
 
 .pomodoro-tabs .tab.active{
-    background-color: #EB5B00;
+    background-color: var(--background-color);
     color: #FFF;
     transform: scale(1.05);
-    box-shadow: 0 0 10px #EB5B00;
+    box-shadow: 0 0 10px var(--secondary-color);
 }
