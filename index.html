@@ -13,7 +13,6 @@
 
 </head>
 <body>
-
     <header>
         <div class="header-content">
             <div class="logo">
@@ -69,6 +68,21 @@
         </section>
     </main>
 
+    <div class="audio-player">
+        <audio id="background-audio" loop>
+            <source src="assets/music.mp3" type="audio/mpeg">
+        </audio>
+        <button id="play-pause-btn" class="audio-btn" aria-label="Play/Pause">
+            <span class="play-icon">▶️</span>
+            <span class="pause-icon" style="display: none;">⏸️</span>
+        </button>
+        <div class="volume-control">
+            <button id="volume-btn" class="audio-btn" aria-label="Volume">
+                <span class="volume-icon">🔊</span>
+            </button>
+            <input type="range" id="volume-slider" min="0" max="100" value="50" class="volume-slider">
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">
