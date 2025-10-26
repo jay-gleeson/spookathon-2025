@@ -1,3 +1,13 @@
+<div align="center">
+  <img alt="GitHub License" src="https://img.shields.io/github/license/jay-gleeson/spookathon-2025">
+  <img src="https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white" alt="HTML Badge">
+  <img src="https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff" alt="CSS Badge">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000" alt="JavaScript Badge">
+  <img src="https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff" alt="Flask Badge">
+  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" alt="Python Badge">
+  <img src="https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff" alt="Google Gemini Badge">
+</div>
+
 # 🎃 Spooky Pomodoro  
 ### *An AI-Enhanced Haunted Productivity Timer*  
 
