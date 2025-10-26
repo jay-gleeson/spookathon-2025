@@ -3,6 +3,7 @@ const FOCUS_DURATION = 25 * 60; // DEFAULT: 25 minutes
 const BREAK_DURATION = 5 * 60;  // DEFAULT: 5 minutes
 const LONG_BREAK_DURATION = 15 * 60; // DEFAULT: 15 minutes
 
+// Initialize alarm audio.
 let alarmAudio;
 window.addEventListener('DOMContentLoaded', () => {
 	alarmAudio = new Audio('assets/alarm.mp3');
@@ -24,6 +25,7 @@ const focusTab = document.getElementById('focus-tab');
 const breakTab = document.getElementById('break-tab');
 
 function updateDisplay() {
+	// Format time as MM:SS
 	const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
 	const seconds = String(timeLeft % 60).padStart(2, '0');
 	timerDisplay.textContent = `${minutes}:${seconds}`;
@@ -37,6 +39,8 @@ function startTimer() {
 			timeLeft--;
 			updateDisplay();
 		} else {
+
+			// Timer complete, play alarm sound, switch modes, alert user.
 			clearInterval(timerInterval);
 			isRunning = false;
 			if (alarmAudio) {
@@ -48,6 +52,8 @@ function startTimer() {
 				alert('Focus session complete! Time for a break.');
 				switchMode('break');
 			} else if (currentMode === 'break' && !inLongBreak) {
+
+				// After 4 pomodoro sessions (focus, break), take a long break.
 				if (pomodoroCount % 4 === 0) {
 					alert('Short break complete! Time for a long break.');
 					inLongBreak = true;
@@ -106,6 +112,7 @@ function switchToLongBreak() {
 	}
 }
 
+// Initialize event listeners.
 if (timerDisplay && startBtn && pauseBtn && resetBtn && focusTab && breakTab) {
 	updateDisplay();
 	startBtn.addEventListener('click', startTimer);
@@ -115,6 +122,7 @@ if (timerDisplay && startBtn && pauseBtn && resetBtn && focusTab && breakTab) {
 	breakTab.addEventListener('click', () => switchMode('break'));
 }
 
+// Function to send durations to API and update timer settings.
 const sessionLengthSelect = document.getElementById('session-length');
 const examDistanceSelect = document.getElementById('exam-distance');
 function sendDurationsToAPI() {
@@ -123,9 +131,11 @@ function sendDurationsToAPI() {
     const loadingGif = document.getElementById('loading-gif');
     const submitBtn = document.getElementById('submit-durations-btn');
 
+	// Show loading GIF and hide submit button.
     if (loadingGif) loadingGif.style.display = 'block';
     if (submitBtn) submitBtn.style.display = 'none';
 
+	// Send POST request to API.
     fetch('http://localhost:5000/api/durations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -138,19 +148,22 @@ function sendDurationsToAPI() {
     .then(data => {
         if (typeof data.focus_duration === 'number' && typeof data.break_duration === 'number' && typeof data.long_break_duration === 'number') {
 
+			// Update global durations.
             window.FOCUS_DURATION = data.focus_duration * 60;
             window.BREAK_DURATION = data.break_duration * 60;
             window.LONG_BREAK_DURATION = data.long_break_duration * 60;
 
+			// Notify user of new durations from Gemini API.
             alert(`Study Schedule Generated!
 				\nFocus Sessions: ${data.focus_duration} minutes
 				\nShort Breaks: ${data.break_duration} minutes
 				\nLong Breaks: ${data.long_break_duration} minutes`);
 
+			// Always hide GIF and continue showing button after processing.
             if (loadingGif) loadingGif.style.display = 'none';
             if (submitBtn) submitBtn.style.display = 'inline-block';
 
-            // Update durations.
+            // Send new durations.
             if (currentMode === 'focus') {
                 pomodoroDuration = window.FOCUS_DURATION;
             } else if (inLongBreak && currentMode === 'break') {
@@ -166,13 +179,14 @@ function sendDurationsToAPI() {
     })
     .catch(error => {
         console.error('Error fetching durations:', error);
-        // Always hide GIF and show button on error
+
+        // Always hide GIF and show button on error.
         if (loadingGif) loadingGif.style.display = 'none';
         if (submitBtn) submitBtn.style.display = 'inline-block';
     });
 }
 
-
+// Form submission handler.
 const pomodoroSetupForm = document.getElementById('pomodoro-setup-form');
 if (pomodoroSetupForm) {
 	pomodoroSetupForm.addEventListener('submit', function(e) {
@@ -181,9 +195,9 @@ if (pomodoroSetupForm) {
 	});
 }
 
+// Background audio controls.
 let backgroundAudio;
 let isPlaying = false;
-
 window.addEventListener('DOMContentLoaded', () => {
 	backgroundAudio = document.getElementById('background-audio');
 	
@@ -194,12 +208,16 @@ window.addEventListener('DOMContentLoaded', () => {
 	const pauseIcon = document.querySelector('.pause-icon');
 	const volumeIcon = document.querySelector('.volume-icon');
 	
+	// Set initial volume based on slider value.
 	if (backgroundAudio && volumeSlider) {
 		backgroundAudio.volume = volumeSlider.value / 100;
 	}
 	
+	// Play/Pause button handler.
 	if (playPauseBtn && backgroundAudio) {
 		playPauseBtn.addEventListener('click', () => {
+
+			// Toggle play/pause state.
 			if (isPlaying) {
 				backgroundAudio.pause();
 				isPlaying = false;
@@ -207,7 +225,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				pauseIcon.style.display = 'none';
 			} else {
 				backgroundAudio.play().catch(error => {
-					console.log('Audio play failed:', error);
+					console.log('Audio play failed:', error); // Handle play errors.
 					alert('Please click the play button to start the background music.');
 				});
 				isPlaying = true;
@@ -219,9 +237,12 @@ window.addEventListener('DOMContentLoaded', () => {
 	
 	if (volumeSlider && backgroundAudio) {
 		volumeSlider.addEventListener('input', () => {
+			
+			// Update volume based on slider.
 			const volume = volumeSlider.value / 100;
 			backgroundAudio.volume = volume;
 			
+			// Update volume icon based on volume.
 			if (volumeIcon) {
 				if (volume === 0) {
 					volumeIcon.textContent = '🔇';
@@ -234,6 +255,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 	
+	// Mute/Unmute button handler.
 	if (volumeBtn && backgroundAudio && volumeSlider) {
 		volumeBtn.addEventListener('click', () => {
 			if (backgroundAudio.volume > 0) {

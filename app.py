@@ -5,9 +5,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from google.generativeai.types import GenerationConfig
 
+# Flask app setup. Connect frontend to backend with CORS.
 app = Flask(__name__)
 CORS(app)
 
+# Default Pomodoro durations in minutes.
 DEFAULT_DURATIONS = {
     "focus_duration": 25,
     "break_duration": 5,
@@ -17,8 +19,11 @@ DEFAULT_DURATIONS = {
 genai.configure(api_key=os.getenv('GEMINI_API_KEY')) # Configure the API key in a .env file.
 model = genai.GenerativeModel('gemini-2.5-pro')
 
+# Durations endpoint.
 @app.route('/api/durations', methods=['POST'])
 def get_durations():
+
+    # Extract input parameters.
     data = request.json
     try:
         session_length = int(data.get('session_length', 1))
@@ -26,15 +31,15 @@ def get_durations():
     except (TypeError, ValueError):
         return jsonify({"error": "session_length and exam_distance must be integers."}), 400
     
+    # Construct prompt for the AI model.
     system_instruction = "You are an API that calculates Pomodoro durations. Your ONLY response MUST be a valid JSON object with integer values for focus_duration, break_duration, and long_break_duration."
-    
     prompt = (
         f"{system_instruction} Calculate the optimal Pomodoro durations in minutes for a study session of {session_length} hours "
         f"with an exam in {exam_distance} days."
     )
 
+    # Call the Generative AI model.
     response = None 
-    
     try:
         response = model.generate_content(
             prompt,
@@ -44,6 +49,7 @@ def get_durations():
             ),
         )
 
+        # Parse the model's response.
         if response.text:
             raw_text = response.text.strip()
 
@@ -59,22 +65,28 @@ def get_durations():
             try:
                 durations = json.loads(raw_text)
 
+                # Validate that all required fields are present.
                 if all(key in durations for key in ['focus_duration', 'break_duration', 'long_break_duration']):
                     return jsonify(durations)
                 else:
+
                     # If AI response is missing required fields, use defaults.
                     return jsonify(DEFAULT_DURATIONS)
             except json.JSONDecodeError:
+
                 # If JSON parsing fails, use defaults.
                 return jsonify(DEFAULT_DURATIONS)
         
         else:
+
             # If model returns an empty response, use defaults.
             return jsonify(DEFAULT_DURATIONS)
 
     except Exception as e:
+
         # If any API call error occurs, use default durations.
         return jsonify(DEFAULT_DURATIONS)
 
+# Run the Flask app.
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
