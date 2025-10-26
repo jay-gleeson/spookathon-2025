@@ -269,8 +269,6 @@ select {
     border-radius: 10px;
 }
 
-<<<<<<< Updated upstream
-=======
 .audio-player {
     position: fixed;
     bottom: 60px;
@@ -381,4 +379,3 @@ select {
     transform: scale(1.05);
     box-shadow: 0 0 10px #EB5B00;
 }
->>>>>>> Stashed changes
