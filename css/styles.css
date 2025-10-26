@@ -369,3 +369,27 @@ select {
     background: #FFC50F;
     transform: scale(1.1);
 }
+
+.pomodoro-tabs .tab{
+    background-color:#4F1C51;
+    color: #D91656;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: "Creepster", system-ui;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+.pomodoro-tabs .tab:hover{
+    background-color: #6A2A6A;
+    color: #FFF;
+}
+
+.pomodoro-tabs .tab.active{
+    background-color: #EB5B00;
+    color: #FFF;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #EB5B00;
+}
