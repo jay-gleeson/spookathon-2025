@@ -1,4 +1,11 @@
-
+:root {
+    scroll-behavior: smooth;
+    --primary-color: #4F1C51;
+    --secondary-color: #D91656;
+    --accent-color: #FFC50F;
+    --background-color: #210F37;
+    --text-color: white;
+}
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +16,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     padding: 20px;
-    background-color: #210F37;
+    background-color: var(--background-color);
 }
 
 header {
