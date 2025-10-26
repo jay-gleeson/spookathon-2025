@@ -1,7 +1,7 @@
 
-const FOCUS_DURATION = 25 * 60; // 25 minutes
-const BREAK_DURATION = 5 * 60;  // 5 minutes
-const LONG_BREAK_DURATION = 30 * 60; // 30 minutes
+const FOCUS_DURATION = 25 * 60; // DEFAULT: 25 minutes
+const BREAK_DURATION = 5 * 60;  // DEFAULT: 5 minutes
+const LONG_BREAK_DURATION = 15 * 60; // DEFAULT: 15 minutes
 
 let alarmAudio;
 window.addEventListener('DOMContentLoaded', () => {
@@ -132,9 +132,15 @@ function sendDurationsToAPI() {
     .then(response => response.json())
     .then(data => {
         if (typeof data.focus_duration === 'number' && typeof data.break_duration === 'number' && typeof data.long_break_duration === 'number') {
-            window.FOCUS_DURATION = data.focus_duration * 60 ? data.focus_duration < 100 : data.focus_duration; // handle if API returns minutes or seconds
-            window.BREAK_DURATION = data.break_duration * 60 ? data.break_duration < 100 : data.break_duration;
-            window.LONG_BREAK_DURATION = data.long_break_duration * 60 ? data.long_break_duration < 100 : data.long_break_duration;
+
+            window.FOCUS_DURATION = data.focus_duration * 60;
+            window.BREAK_DURATION = data.break_duration * 60;
+            window.LONG_BREAK_DURATION = data.long_break_duration * 60;
+
+            alert(`Study Schedule Generated!
+				\nFocus Sessions: ${data.focus_duration} minutes
+				\nShort Breaks: ${data.break_duration} minutes
+				\nLong Breaks: ${data.long_break_duration} minutes`);
 
             if (currentMode === 'focus') {
                 pomodoroDuration = window.FOCUS_DURATION;
@@ -154,9 +160,6 @@ function sendDurationsToAPI() {
     });
 }
 
-if (sessionLengthSelect && examDistanceSelect) {
-}
-
 const pomodoroSetupForm = document.getElementById('pomodoro-setup-form');
 if (pomodoroSetupForm) {
 	pomodoroSetupForm.addEventListener('submit', function(e) {
@@ -164,3 +167,71 @@ if (pomodoroSetupForm) {
 		sendDurationsToAPI();
 	});
 }
+
+let backgroundAudio;
+let isPlaying = false;
+
+window.addEventListener('DOMContentLoaded', () => {
+	backgroundAudio = document.getElementById('background-audio');
+	
+	const playPauseBtn = document.getElementById('play-pause-btn');
+	const volumeBtn = document.getElementById('volume-btn');
+	const volumeSlider = document.getElementById('volume-slider');
+	const playIcon = document.querySelector('.play-icon');
+	const pauseIcon = document.querySelector('.pause-icon');
+	const volumeIcon = document.querySelector('.volume-icon');
+	
+	if (backgroundAudio && volumeSlider) {
+		backgroundAudio.volume = volumeSlider.value / 100;
+	}
+	
+	if (playPauseBtn && backgroundAudio) {
+		playPauseBtn.addEventListener('click', () => {
+			if (isPlaying) {
+				backgroundAudio.pause();
+				isPlaying = false;
+				playIcon.style.display = 'inline';
+				pauseIcon.style.display = 'none';
+			} else {
+				backgroundAudio.play().catch(error => {
+					console.log('Audio play failed:', error);
+					alert('Please click the play button to start the background music.');
+				});
+				isPlaying = true;
+				playIcon.style.display = 'none';
+				pauseIcon.style.display = 'inline';
+			}
+		});
+	}
+	
+	if (volumeSlider && backgroundAudio) {
+		volumeSlider.addEventListener('input', () => {
+			const volume = volumeSlider.value / 100;
+			backgroundAudio.volume = volume;
+			
+			if (volumeIcon) {
+				if (volume === 0) {
+					volumeIcon.textContent = '🔇';
+				} else if (volume < 0.5) {
+					volumeIcon.textContent = '🔉';
+				} else {
+					volumeIcon.textContent = '🔊';
+				}
+			}
+		});
+	}
+	
+	if (volumeBtn && backgroundAudio && volumeSlider) {
+		volumeBtn.addEventListener('click', () => {
+			if (backgroundAudio.volume > 0) {
+				backgroundAudio.volume = 0;
+				volumeSlider.value = 0;
+				volumeIcon.textContent = '🔇';
+			} else {
+				backgroundAudio.volume = 0.5;
+				volumeSlider.value = 50;
+				volumeIcon.textContent = '🔊';
+			}
+		});
+	}
+});
