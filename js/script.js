@@ -1,7 +1,7 @@
 
 const FOCUS_DURATION = 25 * 60; // DEFAULT: 25 minutes
 const BREAK_DURATION = 5 * 60;  // DEFAULT: 5 minutes
-const LONG_BREAK_DURATION = 30 * 60; // DEFAULT: 30 minutes
+const LONG_BREAK_DURATION = 15 * 60; // DEFAULT: 15 minutes
 
 let alarmAudio;
 window.addEventListener('DOMContentLoaded', () => {
@@ -158,9 +158,6 @@ function sendDurationsToAPI() {
     .catch(error => {
         console.error('Error fetching durations:', error);
     });
-}
-
-if (sessionLengthSelect && examDistanceSelect) {
 }
 
 const pomodoroSetupForm = document.getElementById('pomodoro-setup-form');
