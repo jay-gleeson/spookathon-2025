@@ -68,8 +68,13 @@ nav a.active {
 }
 
 h1 {
-    color: #333;
+    letter-spacing: 2px;
+    font-weight: 25;
+    color: #EB5B00;
     margin-bottom: 1rem;
+    font-size: 4.5rem;
+    text-align: center;
+    font-family: "Pirata One", system-ui;
 }
 
 main {
@@ -107,7 +112,7 @@ section {
 .creator-card {
     background: #511D43;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex: 1 1 0;
@@ -116,15 +121,20 @@ section {
     overflow: hidden;
 }
 
-.creator-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-}
-
 .creator-card h3 {
     margin-bottom: 0.5rem;
+    color: #D95D39;
+}
+
+.creator-card p {
+    margin-bottom: 1rem;
+    color: #F0A202;
+}
+
+.creator-emoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .social-links {
@@ -134,7 +144,7 @@ section {
 .social-links a {
     display: inline-block;
     margin: 0 0.5rem;
-    color: #333;
+    color: #7B9E89;
     text-decoration: none;
 }
 
@@ -143,7 +153,7 @@ section {
 }
 
 footer {
-    background-color: #333;
+    background-color: #222831;
     color: #FFC50F;
     position: fixed;
     bottom: 0;
@@ -181,14 +191,6 @@ footer {
     filter: invert(80%);
 }
 
-h1{
-    color: #EB5B00;
-    margin-bottom: 1rem;
-    font-size: 4rem;
-    text-align: center;
-    font-family: "Pirata One", system-ui;
-}
-
 button {
     background-color: #4F1C51;
     color: #D91656;
@@ -211,7 +213,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px; 
+    gap: 10px; 
     background-color: #2A004E;
 }
 
@@ -219,6 +221,11 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+.pomodoro-tabs:active {
+    background-color: #6A2A6A;
+    color: #FFF;
 }
 
 .pomodoro-controls {
@@ -233,5 +240,32 @@ button:hover {
     font-family: "Pirata One", system-ui;
 }
 
+.user-input-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2A004E;
+    padding: 10px;
+}
 
+#submit-durations-btn{
+    font-size: 1.5rem;
+}
+
+#pomodoro-setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #EB5B00;
+    font-family: "New Rocker", cursive;
+    font-size: 1rem;
+}
+
+select {
+    background-color: #4F1C51;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+}
 
