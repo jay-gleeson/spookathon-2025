@@ -58,7 +58,11 @@ No more guessing your Pomodoro lengths — the spirits (and Gemini) have spoken!
 - **Powered by:** Gemini API  
 - **Summoned with:** Flask, Python, HTML/CSS/JS, and caffeine ☕  
 
----
+## 🕯️ Product demo
+<div align="center">
+<img height="200" alt="Landing page" src="https://github.com/user-attachments/assets/658442f6-251a-4fc4-9536-8d407df9d586" />
+<img height="200" alt="API alert" src="https://github.com/user-attachments/assets/c60be1d7-af92-4ea8-b04a-e442c111be88" />
+</div>
 
 ## 👻 Created By 
 - **Arly Zavala** - Frontend development
