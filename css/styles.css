@@ -259,6 +259,13 @@ button:hover {
     font-size: 1.5rem;
 }
 
+#loading-gif {
+    width: 40px !important;
+    transform: scale(2);
+    display: block;
+    margin: 8px auto !important;
+}
+
 #pomodoro-setup-form {
     display: flex;
     flex-direction: column;

@@ -117,10 +117,15 @@ if (timerDisplay && startBtn && pauseBtn && resetBtn && focusTab && breakTab) {
 
 const sessionLengthSelect = document.getElementById('session-length');
 const examDistanceSelect = document.getElementById('exam-distance');
-
 function sendDurationsToAPI() {
     const sessionLength = sessionLengthSelect.value;
     const examDistance = examDistanceSelect.value;
+    const loadingGif = document.getElementById('loading-gif');
+    const submitBtn = document.getElementById('submit-durations-btn');
+
+    if (loadingGif) loadingGif.style.display = 'block';
+    if (submitBtn) submitBtn.style.display = 'none';
+
     fetch('http://localhost:5000/api/durations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -142,6 +147,10 @@ function sendDurationsToAPI() {
 				\nShort Breaks: ${data.break_duration} minutes
 				\nLong Breaks: ${data.long_break_duration} minutes`);
 
+            if (loadingGif) loadingGif.style.display = 'none';
+            if (submitBtn) submitBtn.style.display = 'inline-block';
+
+            // Update durations.
             if (currentMode === 'focus') {
                 pomodoroDuration = window.FOCUS_DURATION;
             } else if (inLongBreak && currentMode === 'break') {
@@ -157,8 +166,12 @@ function sendDurationsToAPI() {
     })
     .catch(error => {
         console.error('Error fetching durations:', error);
+        // Always hide GIF and show button on error
+        if (loadingGif) loadingGif.style.display = 'none';
+        if (submitBtn) submitBtn.style.display = 'inline-block';
     });
 }
+
 
 const pomodoroSetupForm = document.getElementById('pomodoro-setup-form');
 if (pomodoroSetupForm) {
