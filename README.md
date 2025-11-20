@@ -6,6 +6,7 @@
   <img src="https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff" alt="Flask Badge">
   <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" alt="Python Badge">
   <img src="https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff" alt="Google Gemini Badge">
+  <img src="https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white" alt="Vercel Badge">
 </div>
 
 # 🎃 Spooky Pomodoro  
