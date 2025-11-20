@@ -6,7 +6,7 @@ const LONG_BREAK_DURATION = 15 * 60; // DEFAULT: 15 minutes
 // Initialize alarm audio.
 let alarmAudio;
 window.addEventListener('DOMContentLoaded', () => {
-	alarmAudio = new Audio('assets/alarm.mp3');
+	alarmAudio = new Audio('/assets/alarm.mp3');
 });
 
 let currentMode = 'focus';
@@ -136,7 +136,7 @@ function sendDurationsToAPI() {
     if (submitBtn) submitBtn.style.display = 'none';
 
 	// Send POST request to API.
-    fetch('http://localhost:5000/api/durations', {
+    fetch('/api/durations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
