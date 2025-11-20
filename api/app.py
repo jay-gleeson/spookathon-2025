@@ -88,13 +88,5 @@ def get_durations():
         # If any API call error occurs, use default durations.
         return jsonify(DEFAULT_DURATIONS)
     
-@app.route('/')
-def serve_index():
-    return send_from_directory('', 'index.html')
-
-@app.route('/<path:path>')
-def serve_static(path):
-    return send_from_directory('', path)
-
 if __name__ == '__main__':
     app.run(debug=True)
