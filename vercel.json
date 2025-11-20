@@ -3,16 +3,6 @@
     {
       "source": "/api/(.*)",
       "destination": "/api/app.py"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
-  ],
-  "installCommand": "pip install -r requirements.txt --target=./.python_packages",
-  "build": {
-    "env": {
-      "VERCEL_PYTHON_VERSION": "3.12"
-    }
-  }
+  ]
 }
