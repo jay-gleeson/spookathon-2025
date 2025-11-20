@@ -9,7 +9,10 @@
       "destination": "/index.html"
     }
   ],
-  "installCommand": "pip install -r requirements.txt --target=./.python_packages",
-  "public": true,
-  "outputDirectory": "public" 
+  "build": {
+    "env": {
+      "VERCEL_PYTHON_VERSION": "3.12"
+    },
+    "installCommand": "pip install -r requirements.txt --target=./.vercel/output/static/api"
+  }
 }
