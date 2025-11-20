@@ -17,7 +17,7 @@ DEFAULT_DURATIONS = {
 }
 
 genai.configure(api_key=os.getenv('GEMINI_API_KEY')) # Configure the API key in a .env file.
-model = genai.GenerativeModel('gemini-2.5-pro')
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 # Durations endpoint.
 @app.route('/api/durations', methods=['POST'])
