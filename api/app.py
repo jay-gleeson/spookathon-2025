@@ -15,7 +15,7 @@ DEFAULT_DURATIONS = {
 API_KEY = os.getenv('GEMINI_API_KEY')
 
 # Gemini API endpoint.
-gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key={API_KEY}"
+GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key={API_KEY}"
 
 @app.route('/api/durations', methods=['POST'])
 def get_durations():
