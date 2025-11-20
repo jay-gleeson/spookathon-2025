@@ -21,10 +21,12 @@ model = genai.GenerativeModel('gemini-2.5-pro')
 
 # Durations endpoint.
 @app.route('/api/durations', methods=['POST'])
+
+# API Function to handle POST requests for durations calculation.
 def get_durations():
 
-    # Extract input parameters.
-    data = request.json
+    data = request.get_json()
+
     try:
         session_length = int(data.get('session_length', 1))
         exam_distance = int(data.get('exam_distance', 1))
@@ -39,7 +41,6 @@ def get_durations():
     )
 
     # Call the Generative AI model.
-    response = None 
     try:
         response = model.generate_content(
             prompt,
@@ -87,6 +88,5 @@ def get_durations():
         # If any API call error occurs, use default durations.
         return jsonify(DEFAULT_DURATIONS)
 
-# Run the Flask app.
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
