@@ -10,9 +10,11 @@
 </div>
 
 # 🎃 Spooky Pomodoro  
-Halloween-themed Pomodoro timer using Gemini API.
+Halloween-themed Pomodoro timer using Gemini API. 💀
 
 Sometimes, the default pomodoro times of 25 focus minutes and 5 minute breaks don't work for everybody. Some students have shorter or longer focus periods; sometimes a student needs to spend more time studying than not. This web app generates focus times based on how long you have to study for your next assignment, gauging how long you should focus in order to be successful.
+
+This project won **Best in Daily Life**. 🎉
 
 ---
 
