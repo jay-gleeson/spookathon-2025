@@ -31,8 +31,8 @@ Created during **Spookathon 2025**, a 24-hour hackathon hosted by Iota Xi at **O
 
 ## 🕯️ Project Images
 <div align="center">
-<img height="300" alt="Landing page" src="https://github.com/user-attachments/assets/658442f6-251a-4fc4-9536-8d407df9d586" />
-<img height="300" alt="API alert" src="https://github.com/user-attachments/assets/c60be1d7-af92-4ea8-b04a-e442c111be88" />
+<img height="280" alt="Landing page" src="https://github.com/user-attachments/assets/ca4b37dc-fe86-4703-af1c-1ef3115ade6d" />
+<img height="280" alt="API alert" src="https://github.com/user-attachments/assets/d96a7086-9e4e-4f55-997a-629211e4a31f" />
 </div>
 
 ---
