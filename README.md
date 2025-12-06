@@ -10,64 +10,22 @@
 </div>
 
 # 🎃 Spooky Pomodoro  
-### *An AI-Enhanced Haunted Productivity Timer*  
+Halloween-themed Pomodoro timer using Gemini API.
 
-> *"Focus like your grade depends on it... because it probably does."* ☠️  
+Sometimes, the default pomodoro times of 25 focus minutes and 5 minute breaks don't work for everybody. Some students have shorter or longer focus periods; sometimes a student needs to spend more time studying than not. This web app generates focus times based on how long you have to study for your next assignment, gauging how long you should focus in order to be successful.
 
 ---
 
 ## 🕸️ Overview  
-Welcome to **Spooky Pomodoro**, the haunted productivity app that helps you **study smarter (and spookier)**!  
-Born under the eerie glow of **Spookathon 2025** at **Orange Coast College (OCC)**, Spooky Pomodoro blends AI sorcery with time-management science to create the *ultimate* study companion.  
-
-Using the **Gemini API**, Spooky Pomodoro conjures the perfect focus and break times — all based on:  
-- how long you have to study 🕰️  
-- and when your next exam rises from the grave 📚  
-
-No more guessing your Pomodoro lengths — the spirits (and Gemini) have spoken! 👻  
-
----
-
-## 🧙 Features  
-- 🧠 **AI-Optimized Durations** – Uses the Gemini API to calculate ideal focus & break sessions.  
-- ⏳ **Study Time Summoner** – Just tell it how long you plan to study and when your exam is.  
-- 🕷️ **Simple Yet Spooky UI** – Built with HTML, CSS, and JavaScript for a chillingly clean look.  
-- 💀 **Flask-Powered Backend** – A Python backend that talks to Gemini and keeps your session cursed and calculated.  
-- 🔥 **Dark Mode Always** – Because light mode is for the living.  
-
----
-
-## ⚙️ Tech Stack  
-| Layer | Technology |
-|-------|-------------|
-| **Frontend** | HTML, CSS, JavaScript |
-| **Backend** | Python (Flask) |
-| **AI Integration** | Gemini API |
-| **Deployment** | Vercel |
-| **Event** | Spookathon 2025 @ Orange Coast College 🧡🖤 |
+Created during **Spookathon 2025**, a 24-hour hackathon hosted by Iota Xi at **Orange Coast College (OCC)**
 
 ---
 
 ## 🧠 How It Works  
 1. Enter how long you plan to study and when your exam is.  
 2. The Flask backend sends this info to the **Gemini API**.  
-3. Gemini returns the *perfectly cursed* focus and break durations.  
-4. The frontend displays your schedule and keeps time... if you dare.  
-
----
-
-## 🪦 Future Additions  
-- 🧛‍♀️ Study-streak tracking (because the undead never rest)  
-- 👻 Take over pomodoro durations when the API doesn't fit your vibe
-- 🕯️ Integration with calendar reminders before exams  
-- 🪩 Animations to reinforce good study behavior
-
----
-
-## 🧛 Credits  
-- **Developed at:** *Spookathon 2025 – Orange Coast College*    
-- **Powered by:** Gemini API  
-- **Summoned with:** Flask, Python, HTML/CSS/JS, and caffeine ☕  
+3. Gemini returns focus and break durations that fit your needs.
+4. The timer then reflects the new times.
 
 ---
 
@@ -79,15 +37,31 @@ No more guessing your Pomodoro lengths — the spirits (and Gemini) have spoken!
 
 ---
 
+## ⚙️ Tech Stack  
+- Frontend: **HTML, CSS, JavaScript**
+- Backend: **Python (Flask)**
+- API: **Google Gemini**
+- Deployment: **Vercel**
+
+---
+
+## 🪦 Future Additions  
+- Custom model, additional parameters.
+- Customizable themes, colors, etc.
+- Extra additions like calendar, weather, etc.
+
+---
+
 ## 👻 Created By 
 - **Arly Zavala** - Frontend development
 - **Dominick Nguyen** - Backend development
 - **Mary Pham** - Frontend development
 - **Jay Gleeson** - Backend development
 
----
+## 🕰️ Acknowledgement
+- Background image credit: [Chewdichew303 on Pixilart](https://www.pixilart.com/art/hallows-eve-sr26e4968dd1daws3?ft=topic&ft_id=14)
+- Loading gif credit: [Andrew Onorato on Giphy](https://giphy.com/stickers/ghost-spin-ghosts-fnfONXQS7MmHi2AcsJ)
+- Favicon credit: [Apple Ghost Emoji](https://emojipedia.org/apple/ios-16.4/ghost)
 
-## ⚰️ License  
-MIT License – Free to fork, remix, or haunt.  
-
-> *May your focus be sharp and your breaks... brief.* 💀  
+## License  
+MIT License
