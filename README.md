@@ -61,6 +61,7 @@ Created during **Spookathon 2025**, a 24-hour hackathon hosted by Iota Xi at **O
 - **Jay Gleeson** - Backend development
 
 ## 🕰️ Acknowledgement
+- Music credit: [Dosi on Soundcloud](https://soundcloud.com/dosi-beats/trick-or-treat)
 - Background image credit: [Chewdichew303 on Pixilart](https://www.pixilart.com/art/hallows-eve-sr26e4968dd1daws3?ft=topic&ft_id=14)
 - Loading gif credit: [Andrew Onorato on Giphy](https://giphy.com/stickers/ghost-spin-ghosts-fnfONXQS7MmHi2AcsJ)
 - Favicon credit: [Apple Ghost Emoji](https://emojipedia.org/apple/ios-16.4/ghost)
